@@ -1,0 +1,128 @@
+{
+  "definitions": {
+      "Address": {
+        "properties": {
+          "AddressId": {
+            "resource": "integer",
+            "unique": true
+          },
+          "PersonId": {
+            "resource": "reference"
+          },
+          "Street": {
+            "resource": "integer",
+            "format": "{Street} Main St",
+            "paddingLength": 10,
+            "paddingChar": " ",
+            "paddingJustify": "right"
+          },
+          "City": {
+            "resource": "city"
+          },
+          "State": {
+            "resource": "state"
+          },
+          "Zip": {
+            "resource": "zipCode"
+          }
+        },
+        "references": {
+          "Address_Person": {
+            "parent": "Person",
+            "properties": {
+              "PersonId": "PersonId"
+            }
+          }
+        }
+      },
+      "Person": {
+        "properties": {
+          "NewTotal": {
+            "expression": "{PersonId}+({Total}*20)"
+          },
+          "PersonId": {
+            "resource": "integer",
+            "minimum": 1000,
+            "unique": true
+          },
+          "Total": {
+            "resource": "integer",
+            "minimum": 1000,
+            "maximum": 99999
+          },
+          "FullName": {
+            "properties": {
+              "FirstName": {
+                "resource": "firstName"
+              },
+              "MiddleName": {
+
+                "constant": null
+              },
+              "LastName": {
+                "resource": "lastName"
+              }
+            }
+          },
+          "Job": {
+            "properties": {
+              "Position": {
+                "resource": "job"
+              },
+              "Company": {
+                "properties": {
+                  "Name": {
+                    "resource": "company"
+                  },
+                  "Address": {
+                    "properties": {
+                      "City": {
+                        "resource": "city"
+                      },
+                      "State": {
+                        "resource": "state"
+                      },
+                      "Zip": {
+                        "resource": "zipCode"
+                      }
+                    }
+                  }
+                },
+                "xmlAttributes": ["Name"]
+              }
+            }
+          },
+          "Hobbies": {
+            "resource": "string",
+            "minLength": 5,
+            "maxLength": 20,
+            "paddingLength": 20,
+            "paddingChar": "X",
+            "paddingJustify": "left"
+          },
+          "DriversLicense": {
+            "resource": "integer",
+            "minimum": 100000,
+            "maximum": 999999,
+            "type": "string"
+          },
+          "Registered": {
+            "resource": "boolean",
+            "type": "integer"
+          },
+          "Birthdate": {
+            "resource": "dateTimeBetween",
+            "minimum": "-20y",
+            "maximum": "-15y",
+            "ignoreFromOutput": true
+          }
+        }
+      }
+
+  },
+  "plan": {
+    "Person": 1000,
+    "Address": 1000
+  },
+  "export": [{"format": "json"}]
+}
