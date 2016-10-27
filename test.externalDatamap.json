@@ -59,9 +59,9 @@
         "CRT_USER_ID": {
           "resource": "reference"
         },
-        "LAST_UPDT_DTTM": {
+        /*"LAST_UPDT_DTTM": {
           "resource": "reference"
-        },
+        },*/
         "LAST_UPDT_USER_ID": {
           "resource": "reference"
         },
@@ -76,7 +76,7 @@
             "STYLE_NAME": "Display_Name",
             "CRT_DTTM": "CRT_DTTM",
             "CRT_USER_ID": "CRT_USER_ID",
-            "LAST_UPDT_DTTM": "LAST_UPDT_DTTM",
+            //"LAST_UPDT_DTTM": "LAST_UPDT_DTTM",
             "LAST_UPDT_USER_ID": "LAST_UPDT_USER_ID"
           }
         }
