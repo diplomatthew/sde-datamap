@@ -124,5 +124,5 @@
     "Person": 1000,
     "Address": 1000
   },
-  "export": [{"format": "json"}]
+  "export": [{"format": "csv"}]
 }
