@@ -1,128 +1,97 @@
 {
   "definitions": {
-      "Address": {
-        "properties": {
-          "AddressId": {
-            "resource": "integer",
-            "unique": true
-          },
-          "PersonId": {
-            "resource": "reference"
-          },
-          "Street": {
-            "resource": "integer",
-            "format": "{Street} Main St",
-            "paddingLength": 10,
-            "paddingChar": " ",
-            "paddingJustify": "right"
-          },
-          "City": {
-            "resource": "city"
-          },
-          "State": {
-            "resource": "state"
-          },
-          "Zip": {
-            "resource": "zipCode"
-          }
+    "Variables": {
+      "properties": {
+        "Display_Name": {
+          "resource": "text",
+          "maxLength": 20,
+          "format": "Mythos {Display_Name}"
         },
-        "references": {
-          "Address_Person": {
-            "parent": "Person",
-            "properties": {
-              "PersonId": "PersonId"
-            }
-          }
+        "DTThisMonth": {
+          "resource": "dateTimeThisMonth",
+          "format": "{DTThisMonth:%d-%b-%Y}"
+        },
+        "CRT_DTTM": {
+          "constant": "31-Jul-16"
+        },
+        "CRT_USER_ID": {
+          "constant": "EMERCH_PAUTHOR"
+        },
+        "LAST_UPDT_DTTM": {
+          "constant": "31-Jul-16"
+        },
+        "LAST_UPDT_USER_ID": {
+          "constant": "EMERCH_PAUTHOR"
+        },
+        "Price": {
+          "resource": "integer",
+          "minimum": 1500,
+          "maximum": 2000
+        },
+        "CatchPhrase1": {
+          "resource": "sentence"
+        }
+      }
+    },
+    "Style": {
+      "properties": {
+        "STYLE_ID": {
+          "resource": "integer",
+          "minimum": 990030,
+          "unique": true
+        },
+        "STYLE_NUMBER": {
+          "resource": "zipCode",
+          "format": "ZZZ{STYLE_NUMBER}"
+        },
+        "COMPANY_ID": {
+          "constant": 1
+        },
+        "STYLE_NAME": {
+          "resource": "reference"
+        },
+        "NIKEID_INDICATOR": {
+          "constant": 0
+        },
+        "CRT_DTTM": {
+          "resource": "reference"
+        },
+        "CRT_USER_ID": {
+          "resource": "reference"
+        },
+        "LAST_UPDT_DTTM": {
+          "resource": "reference"
+        },
+        "LAST_UPDT_USER_ID": {
+          "resource": "reference"
+        },
+        "STYLE_TYPE_ID": {
+          "constant": 0
         }
       },
-      "Person": {
-        "properties": {
-          "NewTotal": {
-            "expression": "{PersonId}+({Total}*20)"
-          },
-          "PersonId": {
-            "resource": "integer",
-            "minimum": 1000,
-            "unique": true
-          },
-          "Total": {
-            "resource": "integer",
-            "minimum": 1000,
-            "maximum": 99999
-          },
-          "FullName": {
-            "properties": {
-              "FirstName": {
-                "resource": "firstName"
-              },
-              "MiddleName": {
-
-                "constant": null
-              },
-              "LastName": {
-                "resource": "lastName"
-              }
-            }
-          },
-          "Job": {
-            "properties": {
-              "Position": {
-                "resource": "job"
-              },
-              "Company": {
-                "properties": {
-                  "Name": {
-                    "resource": "company"
-                  },
-                  "Address": {
-                    "properties": {
-                      "City": {
-                        "resource": "city"
-                      },
-                      "State": {
-                        "resource": "state"
-                      },
-                      "Zip": {
-                        "resource": "zipCode"
-                      }
-                    }
-                  }
-                },
-                "xmlAttributes": ["Name"]
-              }
-            }
-          },
-          "Hobbies": {
-            "resource": "string",
-            "minLength": 5,
-            "maxLength": 20,
-            "paddingLength": 20,
-            "paddingChar": "X",
-            "paddingJustify": "left"
-          },
-          "DriversLicense": {
-            "resource": "integer",
-            "minimum": 100000,
-            "maximum": 999999,
-            "type": "string"
-          },
-          "Registered": {
-            "resource": "boolean",
-            "type": "integer"
-          },
-          "Birthdate": {
-            "resource": "dateTimeBetween",
-            "minimum": "-20y",
-            "maximum": "-15y",
-            "ignoreFromOutput": true
+      "references": {
+        "Style_Variables": {
+          "parent": "Variables",
+          "properties": {
+            "STYLE_NAME": "Display_Name",
+            "CRT_DTTM": "CRT_DTTM",
+            "CRT_USER_ID": "CRT_USER_ID",
+            "LAST_UPDT_DTTM": "LAST_UPDT_DTTM",
+            "LAST_UPDT_USER_ID": "LAST_UPDT_USER_ID"
           }
         }
       }
-
+    }
   },
   "plan": {
-    "Person": 1000,
-    "Address": 1000
+    "Variables": 1,
+    "Style": 1
   },
-  "export": [{"format": "csv"}]
+  "export": [
+    {
+      "format": "csv",
+      "quote": true,
+      "header": true
+    }
+  ]
 }
