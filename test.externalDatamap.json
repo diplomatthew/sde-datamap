@@ -41,7 +41,7 @@
           "unique": true
         },
         "STYLE_NUMBER": {
-          "resource": "zipCode",
+          "resource": "PI_DefValues_Attr38192_PrimaryColor",
           "format": "ZZZ{STYLE_NUMBER}"
         },
         "COMPANY_ID": {
